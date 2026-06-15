@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUX MedSpa Brickell — Quiet Luxury. Visible Results.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --navy: #0A0F1E;
+      --navy2: #111828;
+      --navy3: #1A2438;
+      --gold: #C4A45A;
+      --gold2: #D4B870;
+      --gold-light: #E8D4A0;
+      --white: #FAFAF8;
+      --cream: #F5F0E8;
+      --silver: #C8C8C0;
+      --muted: #6A6A70;
+      --deep: #070B14;
+    }
+    html, body { background:var(--navy); color:var(--white); font-family:"Montserrat",sans-serif; font-weight:300; overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.6rem 3rem;
+      background:linear-gradient(to bottom, rgba(7,11,20,0.98), transparent);
+    }
+    .nav-logo {
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.1rem; font-weight:400;
+      letter-spacing:0.35em; color:var(--white);
+      text-transform:uppercase; text-decoration:none;
+    }
+    .nav-logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a { font-size:0.56rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.55); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--gold2); }
+    .nav-book {
+      background:transparent; color:var(--gold);
+      font-size:0.56rem; font-weight:500; letter-spacing:0.25em;
+      text-transform:uppercase; text-decoration:none;
+      padding:0.6rem 1.4rem; border:1px solid rgba(196,164,90,0.4);
+      transition:all 0.2s;
+    }
+    .nav-book:hover { background:var(--gold); color:var(--navy); }
+
+    /* ── HERO ── */
+    .hero { position:relative; height:100vh; min-height:640px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+    .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(7,11,20,0.3) 0%,
+        rgba(7,11,20,0.15) 30%,
+        rgba(7,11,20,0.5) 70%,
+        rgba(7,11,20,0.92) 100%
+      );
+    }
+    .hero-content { position:relative; z-index:2; text-align:center; padding:0 2rem; max-width:860px; }
+
+    .hero-location {
+      font-size:0.56rem; letter-spacing:0.5em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:1.8rem;
+      display:flex; align-items:center; justify-content:center; gap:1rem;
+    }
+    .hero-location::before, .hero-location::after { content:''; width:30px; height:1px; background:rgba(196,164,90,0.5); }
+
+    .hero-title {
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(3rem,9vw,8.5rem);
+      font-weight:300; line-height:0.9;
+      color:var(--white); letter-spacing:0.06em;
+      margin-bottom:0.5rem;
+    }
+    .hero-title em { font-style:italic; color:var(--gold-light); display:block; }
+
+    .hero-tagline {
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(1rem,2vw,1.4rem);
+      font-style:italic; font-weight:300;
+      color:rgba(255,255,255,0.7);
+      margin:1.6rem 0 2.8rem; line-height:1.6;
+      letter-spacing:0.05em;
+    }
+
+    .hero-cta { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn-gold {
+      background:var(--gold); color:var(--navy);
+      font-family:"Montserrat",sans-serif; font-size:0.58rem; font-weight:600;
+      letter-spacing:0.25em; text-transform:uppercase; text-decoration:none;
+      padding:1rem 2.4rem; border:none; cursor:pointer;
+      transition:background 0.2s,transform 0.15s; display:inline-block;
+    }
+    .btn-gold:hover { background:var(--gold2); transform:translateY(-2px); }
+
+    .btn-outline {
+      background:transparent; color:var(--white);
+      font-family:"Montserrat",sans-serif; font-size:0.58rem; font-weight:300;
+      letter-spacing:0.25em; text-transform:uppercase; text-decoration:none;
+      padding:1rem 2.4rem; border:1px solid rgba(255,255,255,0.3);
+      cursor:pointer; transition:border-color 0.2s,color 0.2s; display:inline-block;
+    }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold2); }
+
+    .hero-awards {
+      position:absolute; bottom:2.5rem; left:0; right:0; z-index:2;
+      display:flex; justify-content:center; gap:3rem; flex-wrap:wrap;
+      padding:0 2rem;
+    }
+    .award-item { display:flex; flex-direction:column; align-items:center; gap:0.3rem; }
+    .award-icon { font-size:0.9rem; }
+    .award-text { font-size:0.48rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); text-align:center; line-height:1.4; }
+
+    /* ── GOLD STRIP ── */
+    .gold-strip {
+      background:linear-gradient(to right, var(--navy), rgba(196,164,90,0.15), var(--navy));
+      border-top:1px solid rgba(196,164,90,0.25);
+      border-bottom:1px solid rgba(196,164,90,0.25);
+      padding:1rem 2rem; text-align:center;
+    }
+    .gold-strip p { font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); }
+    .gold-strip span { color:rgba(196,164,90,0.4); margin:0 1.2rem; }
+
+    /* ── SECTIONS ── */
+    section { padding:7rem 2rem; }
+    .section-inner { max-width:1100px; margin:0 auto; }
+    .section-inner-narrow { max-width:700px; margin:0 auto; }
+    .eyebrow { font-size:0.54rem; letter-spacing:0.42em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1rem; }
+    .section-title { font-family:"Cormorant Garamond",serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:300; line-height:1.05; color:var(--white); margin-bottom:1.4rem; }
+    .section-title em { font-style:italic; color:var(--gold2); }
+    .section-title.light { color:var(--navy); }
+    .section-title.light em { color:var(--gold); }
+    .gold-rule { width:40px; height:1px; background:var(--gold); margin:1.4rem 0; }
+    .gold-rule.center { margin:1.4rem auto; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background:var(--navy2); border-top:1px solid rgba(196,164,90,0.1); }
+    .experience-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+    .experience-text p { font-size:0.95rem; line-height:1.95; color:rgba(255,255,255,0.65); margin-bottom:1.3rem; }
+    .experience-text p strong { color:var(--white); font-weight:500; }
+    .pull-quote { border-left:2px solid var(--gold); padding-left:1.8rem; margin:2.5rem 0; }
+    .pull-quote p { font-family:"Cormorant Garamond",serif; font-size:1.5rem; font-style:italic; color:var(--cream); line-height:1.5; }
+
+    .stats-block { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+    .stat { background:rgba(255,255,255,0.02); border:1px solid rgba(196,164,90,0.12); padding:2.4rem 2rem; }
+    .stat-num { font-family:"Cormorant Garamond",serif; font-size:3.2rem; font-weight:300; color:var(--gold2); line-height:1; margin-bottom:0.4rem; }
+    .stat-lbl { font-size:0.56rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); line-height:1.5; }
+
+    /* ── SERVICES ── */
+    #services { background:var(--deep); border-top:1px solid rgba(196,164,90,0.08); }
+    .services-intro { max-width:580px; margin-bottom:4rem; }
+    .services-intro p { font-size:0.95rem; line-height:1.9; color:rgba(255,255,255,0.6); }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .service-card {
+      background:var(--navy2); border:1px solid rgba(196,164,90,0.08);
+      padding:2.8rem 2.2rem;
+      transition:border-color 0.3s, transform 0.2s;
+      position:relative; overflow:hidden;
+    }
+    .service-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      background:linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .service-card:hover { border-color:rgba(196,164,90,0.25); transform:translateY(-4px); }
+    .service-card:hover::before { opacity:1; }
+    .service-icon { font-size:1.4rem; margin-bottom:1.2rem; opacity:0.8; }
+    .service-name { font-family:"Cormorant Garamond",serif; font-size:1.5rem; font-weight:300; color:var(--white); margin-bottom:0.8rem; line-height:1.2; }
+    .service-desc { font-size:0.75rem; color:rgba(255,255,255,0.5); line-height:1.8; margin-bottom:1.4rem; }
+    .service-tag { font-size:0.52rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+
+    /* ── LOCATION ── */
+    #location { background:var(--navy2); border-top:1px solid rgba(196,164,90,0.1); }
+    .location-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    .location-image {
+      background:linear-gradient(135deg, var(--navy3) 0%, #1A2840 50%, #0F1E35 100%);
+      min-height:500px; display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+    .location-image::before {
+      content:'SLS LUX\ABRICKELL';
+      font-family:"Cormorant Garamond",serif;
+      font-size:3rem; font-weight:300; color:rgba(196,164,90,0.15);
+      letter-spacing:0.2em; text-align:center; white-space:pre;
+    }
+    .location-map-pin {
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      font-size:0.56rem; letter-spacing:0.25em; text-transform:uppercase;
+      color:var(--gold); opacity:0.7;
+    }
+    .location-details { padding:5rem 4rem; display:flex; flex-direction:column; justify-content:center; }
+    .location-details p { font-size:0.92rem; line-height:1.95; color:rgba(255,255,255,0.65); margin-bottom:1.3rem; }
+    .location-details p strong { color:var(--white); font-weight:500; }
+    .location-info { list-style:none; display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+    .location-info li { display:flex; align-items:flex-start; gap:1rem; font-size:0.8rem; color:rgba(255,255,255,0.6); line-height:1.5; }
+    .location-info li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:0.5rem; }
+
+    /* ── TESTIMONIALS ── */
+    #reviews { background:var(--deep); border-top:1px solid rgba(196,164,90,0.08); text-align:center; }
+    .reviews-header { max-width:600px; margin:0 auto 4rem; }
+    .reviews-header .gold-rule { margin:1.4rem auto; }
+    .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:3rem; }
+    .review-card { background:var(--navy2); border:1px solid rgba(196,164,90,0.08); padding:2.4rem 2rem; text-align:left; }
+    .review-stars { color:var(--gold); font-size:0.7rem; letter-spacing:0.1em; margin-bottom:1rem; }
+    .review-text { font-family:"Cormorant Garamond",serif; font-size:1.05rem; font-style:italic; font-weight:300; color:rgba(255,255,255,0.75); line-height:1.7; margin-bottom:1.2rem; }
+    .review-author { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+    .review-count { font-family:"Cormorant Garamond",serif; font-size:4rem; font-weight:300; color:var(--gold2); line-height:1; margin-bottom:0.4rem; }
+    .review-count-label { font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); }
+
+    /* ── BOOK ── */
+    #book {
+      background:linear-gradient(135deg, var(--navy3) 0%, var(--navy) 100%);
+      border-top:1px solid rgba(196,164,90,0.15);
+      text-align:center;
+      position:relative; overflow:hidden;
+    }
+    #book::before {
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(196,164,90,0.06) 0%, transparent 70%);
+    }
+    #book .section-inner-narrow { position:relative; z-index:1; }
+    #book .gold-rule { margin:1.4rem auto; }
+    #book p { font-size:0.95rem; line-height:1.9; color:rgba(255,255,255,0.6); max-width:500px; margin:0 auto 2.5rem; }
+    .book-options { display:grid; grid-template-columns:1fr 1fr; gap:2px; max-width:660px; margin:0 auto 2.5rem; }
+    .book-card { background:rgba(255,255,255,0.03); border:1px solid rgba(196,164,90,0.15); padding:2.4rem 2rem; text-align:left; transition:border-color 0.2s; }
+    .book-card:hover { border-color:rgba(196,164,90,0.35); }
+    .book-card-title { font-family:"Cormorant Garamond",serif; font-size:1.4rem; font-weight:300; color:var(--white); margin-bottom:0.5rem; }
+    .book-card-desc { font-size:0.73rem; color:var(--muted); line-height:1.7; margin-bottom:1.5rem; }
+    .btn-navy { background:var(--white); color:var(--navy); font-family:"Montserrat",sans-serif; font-size:0.58rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; text-decoration:none; padding:0.8rem 1.6rem; display:inline-block; transition:background 0.2s; }
+    .btn-navy:hover { background:var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--deep); border-top:1px solid rgba(196,164,90,0.1); padding:3rem 2rem; text-align:center; }
+    .footer-inner { max-width:1100px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:1.2rem; }
+    .footer-logo { font-family:"Cormorant Garamond",serif; font-size:1rem; font-weight:300; letter-spacing:0.35em; color:var(--white); text-transform:uppercase; }
+    .footer-logo span { color:var(--gold); }
+    .footer-links { display:flex; gap:2rem; list-style:none; }
+    .footer-links a { font-size:0.54rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--silver); }
+    .footer-credit { font-size:0.6rem; color:var(--muted); opacity:0.5; letter-spacing:0.06em; }
+    .footer-credit a { color:var(--gold); text-decoration:none; opacity:0.8; }
+
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease,transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:768px){
+      nav { padding:1.2rem 1.5rem; }
+      .nav-links,.nav-book { display:none; }
+      .experience-grid,.location-grid { grid-template-columns:1fr; }
+      .services-grid,.reviews-grid { grid-template-columns:1fr; }
+      .book-options { grid-template-columns:1fr; }
+      .hero-awards { gap:1.5rem; }
+      section { padding:5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><span>LUX</span> MedSpa Brickell</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="#book" class="nav-book">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
+    <source src="sls.mov" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-location">9th Floor · SLS LUX Hotel · Brickell Miami</div>
+    <h1 class="hero-title">
+      LUX
+      <em>MedSpa</em>
+    </h1>
+    <p class="hero-tagline">Quiet luxury. Visible results.<br/>Miami&apos;s most awarded boutique spa experience.</p>
+    <div class="hero-cta">
+      <a href="#book" class="btn-gold">Book Your Experience</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-awards">
+    <div class="award-item">
+      <span class="award-icon">🏆</span>
+      <span class="award-text">Best MedSpa<br/>Miami 2025</span>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">✨</span>
+      <span class="award-text">Best Facial<br/>CEO Times 2025</span>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">⭐</span>
+      <span class="award-text">2,100+<br/>Five Star Reviews</span>
+    </div>
+    <div class="award-item">
+      <span class="award-icon">🌿</span>
+      <span class="award-text">Best Couples Massage<br/>Miami 2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- GOLD STRIP -->
+<div class="gold-strip">
+  <p>Voted Best MedSpa Miami 2025 <span>·</span> Featured in Brickell Magazine <span>·</span> 2,100+ Five Star Reviews <span>·</span> Inside SLS LUX Hotel</p>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="experience-grid">
+      <div class="experience-text reveal">
+        <span class="eyebrow">The Experience</span>
+        <h2 class="section-title">Where science<br/>meets <em>serenity.</em></h2>
+        <div class="gold-rule"></div>
+        <p>Nestled on the 9th floor of the iconic SLS LUX Hotel in the heart of Brickell, LUX MedSpa is not your average spa. It is a <strong>results-driven sanctuary</strong> where every treatment begins with precision and ends in transformation.</p>
+        <p>Founded by Alan Araujo — Licensed Massage Therapist, Cosmedix Pro Affiliate, and facial rejuvenation expert — LUX MedSpa blends clinical-grade skincare with personalized, holistic care. You are not just another appointment. You are a guest.</p>
+        <div class="pull-quote">
+          <p>&ldquo;Luxury is a feeling — one that begins with preparation, connection, and personalized service.&rdquo;</p>
+        </div>
+        <p>From AI-powered skin analysis to signature sculpting facials and Ultraformer MPT skin lifting — every service is curated with intention, science, and quiet luxury.</p>
+      </div>
+      <div class="stats-block reveal">
+        <div class="stat">
+          <div class="stat-num">2,100+</div>
+          <div class="stat-lbl">Five Star Reviews Across Platforms</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">#1</div>
+          <div class="stat-lbl">Voted Best MedSpa Miami 2025</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">9th</div>
+          <div class="stat-lbl">Floor — SLS LUX Hotel Brickell</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Personalized Treatment Protocols</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOUNDER - LIGHT -->
+<section id="founder" style="padding:7rem 2rem;background:#F7F4EF;border-top:1px solid rgba(0,0,0,0.06);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:420px 1fr;gap:6rem;align-items:center;">
+      <div class="reveal" style="position:relative;">
+        <div style="position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;background:#F0EBE3;border:1px solid rgba(196,164,90,0.2);z-index:0;"></div>
+        <img src="http://static1.squarespace.com/static/656939589adab62013609eab/t/686474b00ca01d00cb8a88a6/1751413936653/lux-medspa-brickell-founder-alan-araujo.jpg" alt="Alan Araujo Founder LUX MedSpa Brickell" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;position:relative;z-index:1;" onerror="this.style.background='linear-gradient(135deg,#F0EBE3,#E8E0D4)';this.removeAttribute('src')" />
+      </div>
+      <div class="reveal">
+        <span style="font-size:0.54rem;letter-spacing:0.42em;text-transform:uppercase;color:#8B6914;display:block;margin-bottom:1rem;">The Founder</span>
+        <h2 style="font-family:Cormorant Garamond,serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:300;line-height:1.05;color:#0A0F1E;margin-bottom:1.4rem;">Alan<br/><em style="font-style:italic;color:#8B6914;">Araujo.</em></h2>
+        <div style="width:40px;height:1px;background:#8B6914;margin:1.4rem 0;"></div>
+        <p style="font-size:0.95rem;line-height:1.95;color:#444;margin-bottom:1.3rem;">Alan Araujo is not just a spa owner. He is a <strong style="color:#0A0F1E;font-weight:500;">Licensed Massage Therapist, Cosmedix Pro Affiliate, and one of Miami&apos;s most recognized facial rejuvenation experts</strong> &mdash; the force behind every treatment at LUX MedSpa Brickell.</p>
+        <p style="font-size:0.95rem;line-height:1.95;color:#444;margin-bottom:1.3rem;">With a philosophy rooted in barrier-first skincare and a commitment to personalized care, Alan built LUX from the ground up inside one of Miami&apos;s most iconic hotels. Every protocol, every product, every experience &mdash; designed by him with intention.</p>
+        <div style="border-left:2px solid #8B6914;padding-left:1.8rem;margin:2rem 0;">
+          <p style="font-family:Cormorant Garamond,serif;font-size:1.4rem;font-style:italic;color:#0A0F1E;line-height:1.5;">&ldquo;Luxury is a feeling &mdash; one that begins with preparation, connection, and personalized service.&rdquo;</p>
+        </div>
+        <p style="font-size:0.95rem;line-height:1.95;color:#444;margin-bottom:1.3rem;">Featured in <strong style="color:#0A0F1E;font-weight:500;">Brickell Magazine, Voyage Miami, ShoutOut Miami</strong> and recognized as a Top Searched Spa during Miami Spa Month by the Greater Miami Convention &amp; Visitors Bureau.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.8rem;">
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#8B6914;border:1px solid rgba(139,105,20,0.25);padding:0.35rem 0.8rem;background:rgba(139,105,20,0.05);">Licensed Massage Therapist</span>
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#8B6914;border:1px solid rgba(139,105,20,0.25);padding:0.35rem 0.8rem;background:rgba(139,105,20,0.05);">Cosmedix Pro Affiliate</span>
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#8B6914;border:1px solid rgba(139,105,20,0.25);padding:0.35rem 0.8rem;background:rgba(139,105,20,0.05);">Facial Rejuvenation Expert</span>
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#8B6914;border:1px solid rgba(139,105,20,0.25);padding:0.35rem 0.8rem;background:rgba(139,105,20,0.05);">Brickell Magazine</span>
+          <span style="font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:#8B6914;border:1px solid rgba(139,105,20,0.25);padding:0.35rem 0.8rem;background:rgba(139,105,20,0.05);">Voyage Miami</span>
+        </div>
+        <a href="#book" style="background:#0A0F1E;color:#fff;font-family:Montserrat,sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;padding:1rem 2.4rem;display:inline-block;margin-top:1.8rem;transition:background 0.2s;">Book with Alan &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Treatments</span>
+    <h2 class="section-title reveal">Curated with intention.<br/><em>Delivered with precision.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <div class="services-intro reveal">
+      <p>Every treatment at LUX MedSpa is designed around your skin, your goals, and your pace. No rushing. No guessing. Just results.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Signature Facials</div>
+        <div class="service-desc">Clinical-grade facials designed around barrier-first skin analysis. From the Birthday Facial Experience to advanced sculpting protocols — each treatment is personalized, never templated.</div>
+        <div class="service-tag">Most Requested</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌿</div>
+        <div class="service-name">Massage & Body</div>
+        <div class="service-desc">Swedish, deep tissue, lymphatic drainage, and couples massage in a private suite setting. Designed for deep restoration and meaningful connection.</div>
+        <div class="service-tag">Voted Best in Miami</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💫</div>
+        <div class="service-name">Ultraformer MPT</div>
+        <div class="service-desc">Miami&apos;s finest non-surgical skin lifting treatment. Ultraformer MPT uses focused ultrasound to lift, tighten, and contour — zero downtime, visible results.</div>
+        <div class="service-tag">Non-Surgical Facelift</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔬</div>
+        <div class="service-name">Microneedling</div>
+        <div class="service-desc">Collagen-stimulating microneedling protocols that improve texture, reduce scarring, and restore radiance. Clinical precision in a luxury setting.</div>
+        <div class="service-tag">Advanced Treatment</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💑</div>
+        <div class="service-name">Couples Experience</div>
+        <div class="service-desc">A private, curated couples massage suite in the heart of Brickell. Perfect for anniversaries, birthdays, and meaningful moments of reconnection.</div>
+        <div class="service-tag">Best Couples Massage 2025</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🧬</div>
+        <div class="service-name">AI Skin Analysis</div>
+        <div class="service-desc">Every LUX experience begins with advanced AI-powered skin analysis — mapping your skin&apos;s behavior before a single product touches your face.</div>
+        <div class="service-tag">Technology Forward</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-inner" style="padding:0;max-width:100%;">
+    <div class="location-grid">
+      <div class="location-image" style="background-image:url('https://images.squarespace-cdn.com/content/v1/656939589adab62013609eab/3c3bdee4-aa24-4bcc-9851-440527efbad7/r');background-size:cover;background-position:center;">
+        <span class="location-map-pin">805 S Miami Ave · 9th Floor · Brickell</span>
+      </div>
+      <div class="location-details reveal">
+        <span class="eyebrow">Find Us</span>
+        <h2 class="section-title">Inside the<br/><em>SLS LUX Hotel.</em></h2>
+        <div class="gold-rule"></div>
+        <p>LUX MedSpa Brickell is not in a strip mall or a medical office park. We are <strong>inside one of Miami&apos;s most iconic luxury hotels</strong> — on the 9th floor, overlooking Biscayne Bay and the Brickell skyline.</p>
+        <p>Your experience begins the moment you step into the SLS. Valet, lobby, elevator — every detail signals that what follows will be extraordinary.</p>
+        <ul class="location-info">
+          <li>805 S Miami Ave, 9th Floor, Miami FL 33130</li>
+          <li>Inside the SLS LUX Brickell Hotel</li>
+          <li>Text or Call: (305) 988-9388</li>
+          <li>By appointment — walk-ins welcome based on availability</li>
+        </ul>
+        <div style="margin-top:2rem;">
+          <a href="#book" class="btn-gold">Reserve Your Experience →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:#F0EBE3;">
+  <div class="section-inner">
+    <div class="reviews-header reveal" style="max-width:600px;margin:0 auto 4rem;">
+      <span class="eyebrow">What Clients Say</span>
+      <h2 class="section-title">2,100 reasons<br/>to <em>believe us.</em></h2>
+      <div class="gold-rule center"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal" style="background:#fff;border:1px solid rgba(0,0,0,0.05);padding:2.4rem 2rem;text-align:left;">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text" style="font-family:Cormorant Garamond,serif;font-size:1.05rem;font-style:italic;color:#333;line-height:1.7;margin-bottom:1.2rem;">&ldquo;I love LUX MedSpa Brickell. It&apos;s the best spa in Miami. I feel marvelous every time I go. Whether I do the best facial with Alan or the lymphatic drainage massage, I know they&apos;ll take care of me.&rdquo;</div>
+        <div class="review-author">Verified Client · Google</div>
+      </div>
+      <div class="review-card reveal" style="background:#fff;border:1px solid rgba(0,0,0,0.05);padding:2.4rem 2rem;text-align:left;">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text" style="font-family:Cormorant Garamond,serif;font-size:1.05rem;font-style:italic;color:#333;line-height:1.7;margin-bottom:1.2rem;">&ldquo;I&apos;ve been coming here for over a year and I&apos;m blown away every time. The Ultraformer MPT is truly the best non-surgical facelift in Miami. Best spa experience I&apos;ve ever had.&rdquo;</div>
+        <div class="review-author">Verified Client · Google</div>
+      </div>
+      <div class="review-card reveal" style="background:#fff;border:1px solid rgba(0,0,0,0.05);padding:2.4rem 2rem;text-align:left;">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text" style="font-family:Cormorant Garamond,serif;font-size:1.05rem;font-style:italic;color:#333;line-height:1.7;margin-bottom:1.2rem;">&ldquo;From the moment you walk in, everything feels intentional and elevated. The team is knowledgeable, gentle, and attentive. This is not just a spa — it is a wellness destination.&rdquo;</div>
+        <div class="review-author">Verified Client · Google</div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;">
+      <div class="review-count">2,100+</div>
+      <div class="review-count-label">Five Star Reviews · Google · Yelp · TripAdvisor</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book">
+  <div class="section-inner-narrow">
+    <span class="eyebrow">Reserve Your Experience</span>
+    <h2 class="section-title">You are not just<br/>another <em>appointment.</em></h2>
+    <div class="gold-rule center"></div>
+    <p>Every LUX MedSpa experience is crafted around you. Book online or call us directly — we will take care of the rest.</p>
+    <div class="book-options">
+      <div class="book-card reveal">
+        <div class="book-card-title">Book Online</div>
+        <div class="book-card-desc">Reserve your facial, massage, or treatment online. Select your service, choose your time, and arrive ready to be transformed.</div>
+        <a href="https://www.luxmedspabrickell.com" class="btn-navy" target="_blank">Book Now →</a>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-card-title">Call or Text</div>
+        <div class="book-card-desc">Prefer to speak with a team member? We are here to help you choose the right treatment for your skin and your goals.</div>
+        <a href="tel:3059889388" class="btn-gold">305 988 9388</a>
+      </div>
+    </div>
+    <p style="font-size:0.68rem;color:var(--muted);text-align:center;">805 S Miami Ave · 9th Floor · SLS LUX Hotel · Brickell Miami</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><span>LUX</span> MedSpa Brickell</div>
+    <ul class="footer-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+    <p class="footer-credit">Cinematic Web Experience by <a href="https://bit.ly/RainMgmt" target="_blank">Rain Management Solutions</a> · Cinematic Brand Experiences. Lasting Impressions.</p>
+    <p class="footer-credit" style="margin-top:0.3rem;">© 2026 · LUX MedSpa Brickell · 805 S Miami Ave · Miami, FL 33130</p>
+  </div>
+</footer>
+
+<script>
+const revEls = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);} });
+},{threshold:0.1});
+revEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
